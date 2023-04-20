@@ -12,7 +12,7 @@ export default function ProtectedRoutes({ children }) {
       navigate("/login");
     } else {
       axios
-        .post("http://localhost:5000/auth", { token })
+        .post("http://localhost:5000/api/auth", { token })
         .then((res) => {
           if (res.data.authentication) {
             setAuth(true);

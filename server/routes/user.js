@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
-router.post("/signup", async (req, res) => {
+router.post("/api/signup", async (req, res) => {
   const user = {
     ...req.body,
     password: await bcrypt.hash(req.body.password, 10),
@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/api/login", async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
   if (!user) {
     return res.status(400).json({ message: "User not found" });
@@ -48,7 +48,7 @@ router.delete("/", async (req, res) => {
   });
 });
 
-router.post("/auth", (req, res) => {
+router.post("/api/auth", (req, res) => {
   jwt.verify(req.body.token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(400).json({ authentication: false });

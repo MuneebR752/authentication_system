@@ -26,7 +26,7 @@ function Signup() {
   let submit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/signup", formData)
+      .post("http://localhost:5000/api/signup", formData)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         setToken(res.data.token);

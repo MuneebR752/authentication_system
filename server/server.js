@@ -13,11 +13,8 @@ const route = require("./routes/user");
 // Connect Database
 connectDB();
 
-app.post("/signup", route);
-app.post("/login", route);
+app.post("/api/signup", route);
+app.post("/api/login", route);
+app.post("/api/auth", route);
 app.delete("/", route);
-app.post("/auth", route);
-app.get("/", async (req, res) => {
-  res.send(await User.find());
-});
 app.listen(5000, () => console.log("Server started on port 5000"));

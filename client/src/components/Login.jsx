@@ -25,7 +25,7 @@ export default function Login() {
   let submit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/login", formData)
+      .post("http://localhost:5000/api/login", formData)
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
