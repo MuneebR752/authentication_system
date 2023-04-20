@@ -13,7 +13,11 @@ router.post("/api/signup", async (req, res) => {
   try {
     let newUser = await User.create(user);
     let jwtToken = jwt.sign(
-      { id: newUser._id, username: newUser.username },
+      {
+        id: newUser._id,
+        username: newUser.username,
+        password: newUser.password,
+      },
       process.env.JWT_SECRET
     );
     return res.status(201).json({ message: "User created", token: jwtToken });
@@ -32,7 +36,7 @@ router.post("/api/login", async (req, res) => {
   }
   if (await bcrypt.compare(req.body.password, user.password)) {
     let jwtToken = jwt.sign(
-      { id: user._id, username: user.username },
+      { id: user._id, username: user.username, password: user.password },
       process.env.JWT_SECRET
     );
     return res
@@ -56,6 +60,29 @@ router.post("/api/auth", (req, res) => {
       return res.status(200).json({ authentication: true });
     }
   });
+});
+
+router.post("/api/changePassword", async (req, res) => {
+  let { current_password, new_password, token } = req.body;
+  let user = jwt.verify(token, process.env.JWT_SECRET);
+  try {
+    if (await bcrypt.compare(current_password, user.password)) {
+      let hashedPassword = await bcrypt.hash(new_password, 10);
+      await User.updateOne(
+        { _id: user.id },
+        { $set: { password: hashedPassword } }
+      );
+      return res
+        .status(200)
+        .json({ success: true, message: "Password changed successfully" });
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, message: "Incorrect password" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", success: false });
+  }
 });
 
 //Mine code

@@ -16,5 +16,6 @@ connectDB();
 app.post("/api/signup", route);
 app.post("/api/login", route);
 app.post("/api/auth", route);
+app.post("/api/changePassword", route);
 app.delete("/", route);
 app.listen(5000, () => console.log("Server started on port 5000"));

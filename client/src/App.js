@@ -4,6 +4,7 @@ import About from "./components/About";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import ChangePassword from "./components/ChangePassword";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </BrowserRouter>
   );

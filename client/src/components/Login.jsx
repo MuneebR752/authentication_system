@@ -68,7 +68,6 @@ export default function Login() {
         <p>
           Don't have an Account? <Link to="/signup">Click Here</Link>
         </p>
-        <p style={{ textAlign: "center" }}>Forget Password?</p>
         <div className="social">
           <div className="go">
             <i className="fab fa-google" /> Google

@@ -15,6 +15,9 @@ export default function Navbar() {
       >
         Log out
       </div>
+      <NavLink style={{ float: "right" }} to="/change-password">
+        Change Password
+      </NavLink>
     </div>
   );
 }
