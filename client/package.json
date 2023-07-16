@@ -1,5 +1,5 @@
 {
-  "name": "user-login_signup",
+  "name": "authentication-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
